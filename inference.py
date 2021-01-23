@@ -12,7 +12,7 @@ def get_category(img):
     """Write a Function to Predict the Class Name
 
     Args:
-        img [jpg]: image file
+        img [jpg]: image file with 3 color channels
 
     Returns:
         [str]: Prediction
@@ -21,6 +21,8 @@ def get_category(img):
     img = mpimg.imread(img)
     # Convert to float32
     img = tf.cast(img, tf.float32)
+    # Resize to 224x224 (size the model is expecting)
+    img = tf.image.resize(img, [224, 224])
     # Expand img dimensions from (224, 224, 3) to (1, 224, 224, 3) for set_tensor method call
     img = np.expand_dims(img, axis=0)
 
@@ -46,11 +48,13 @@ def get_category(img):
     return class_names[predicted_label]
 
 
-def plot_category(img):
-    """Plot the input image
+# def plot_category(img):
+def plot_category(img, current_time):
+    """Plot the input image. Timestamp used to help Flask grab the correct image.
 
     Args:
         img [jpg]: image file
+        current_time: timestamp
     """
     # Read an image from a file into a numpy array
     img = mpimg.imread(img)
@@ -59,9 +63,8 @@ def plot_category(img):
     plt.xticks([])
     plt.yticks([])
     plt.imshow(img, cmap=plt.cm.binary)
-    # matplotlib would not overwrite previous image, so using this work around
-    # https://stackoverflow.com/questions/49039581/matplotlib-savefig-will-not-overwrite-old-files
-    strFile = 'static/images/output.png'
+    # To make sure Flask grabs the correct image to plot
+    strFile = f'static/images/output_{current_time}.png'
     if os.path.isfile(strFile):
         os.remove(strFile)
     # Save the image with the file name that result.html is using as its img src
