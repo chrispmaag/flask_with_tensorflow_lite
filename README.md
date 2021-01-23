@@ -31,5 +31,5 @@ Then navigate to http://127.0.0.1:5000/ (local host) to be able to insert an ima
 Sample results from the model showing the input image and text for the predicted class name:
 
 ![rock_predicts_rock](https://github.com/chrispmaag/flask_with_tensorflow_lite/blob/main/images/rock_predicts_rock.jpg)
-![scissors_predicted_scissors](https://github.com/chrispmaag/flask_with_tensorflow_lite/blob/main/images/scissors_predicted_scissors.jpg)
+![scissors_predicts_scissors](https://github.com/chrispmaag/flask_with_tensorflow_lite/blob/main/images/scissors_predicts_scissors.jpg)
 ![rock_predicts_rock2](https://github.com/chrispmaag/flask_with_tensorflow_lite/blob/main/images/rock_predicts_rock2.jpg)
